@@ -4,6 +4,14 @@ import java.util.*;
 
 /*
  * 단방향 가중치 그래프 최단거리
+   case1: 양방향인 경우 
+   Edge e = new Edge(nodes[u], nodes[v], w);
+   nodes[u].edges.add(e);  
+   Edge e = new Edge(nodes[v], nodes[u], w);
+   nodes[v].edges.add(e); 
+   
+   case2: 가중치 없는 경우  depth 로 계산한다.
+   
  **/
 
 public class Main {
