@@ -1,0 +1,47 @@
+import java.util.HashSet;
+import java.util.Set;
+
+public class Permutation {
+    public static void main(String[] args) {
+        String numbers="17";
+        char[] list = numbers.toCharArray();
+        int[] combArr = new int[list.length];
+        for (int i = 0; i < list.length; i++) {
+            combArr[i] = Integer.parseInt(String.valueOf(list[i]));
+        }
+        Set<Integer> sosuList = new HashSet<>();
+        for (int i = 1; i <= list.length; i++) {
+            perm(list, 0, i, sosuList);
+        }
+
+    }
+
+    public static void perm(char[] arr, int depth, int k, Set sosuList) {
+        if (depth == k) {
+            // 한번 depth 가 k로 도달하면 사이클이 돌았음. 출력함.
+            print(arr, k, sosuList);
+            return;
+        } else {
+            for (int i = depth; i < arr.length; i++) {
+                swap(arr, i, depth);
+                perm(arr, depth + 1, k, sosuList);
+                swap(arr, i, depth);
+            }
+        }
+    }
+
+    public static void swap(char[] arr, int i, int j) {
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    public static void print(char[] arr, int k, Set sosuList) {
+        StringBuilder a = new StringBuilder();
+        for (int i = 0; i < k; i++) {
+            System.out.print(arr[i]);
+            a.append(arr[i]);
+        }
+        System.out.println();
+    }
+}
